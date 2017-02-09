@@ -1,7 +1,6 @@
 <div class="ng2-smart-table-container">
   <table class="ng2-smart-table table" [id]="grid.getSetting('attr.id')" [ngClass]="grid.getSetting('attr.class')">
     <thead *ngIf="!grid.getSetting('hideHeader') || !grid.getSetting('hideSubHeader')">
-
     <tr class="ng2-smart-titles" *ngIf="!grid.getSetting('hideHeader')">
       <th *ngIf="grid.isMultiSelectVisible()" (click)="selectAllRows()">
         <input type="checkbox" [ngModel]="isAllSelected">
@@ -63,8 +62,12 @@
         <input type="checkbox" class="form-control" [ngModel]="row.isSelected">
       </td>
       <td *ngIf="!row.isInEditing && grid.showActionColumn('left')" class="ng2-smart-actions">
+        <a href="#" *ngIf="grid.getSetting('actions.view')" class="ng2-smart-action ng2-smart-action-edit-edit"
+           [innerHTML]="grid.getSetting('view.viewButtonContent')" (click)="onView(row, $event)"></a>
+
         <a href="#" *ngIf="grid.getSetting('actions.edit')" class="ng2-smart-action ng2-smart-action-edit-edit"
            [innerHTML]="grid.getSetting('edit.editButtonContent')" (click)="onEdit(row, $event)"></a>
+
         <a href="#" *ngIf="grid.getSetting('actions.delete')" class="ng2-smart-action ng2-smart-action-delete-delete"
            [innerHTML]="grid.getSetting('delete.deleteButtonContent')" (click)="onDelete(row, $event)"></a>
       </td>

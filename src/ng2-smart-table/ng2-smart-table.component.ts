@@ -23,6 +23,7 @@ export class Ng2SmartTableComponent implements OnChanges {
   @Output() public rowSelect: EventEmitter<any> = new EventEmitter<any>();
   @Output() public userRowSelect: EventEmitter<any> = new EventEmitter<any>();
   @Output() public delete: EventEmitter<any> = new EventEmitter<any>();
+  @Output() public view: EventEmitter<any> = new EventEmitter<any>();
   @Output() public edit: EventEmitter<any> = new EventEmitter<any>();
   @Output() public create: EventEmitter<any> = new EventEmitter<any>();
 
@@ -39,6 +40,7 @@ export class Ng2SmartTableComponent implements OnChanges {
     hideSubHeader: false,
     actions: {
       columnTitle: 'Actions',
+      view: true,
       add: true,
       edit: true,
       delete: true,
@@ -46,6 +48,13 @@ export class Ng2SmartTableComponent implements OnChanges {
     },
     filter: {
       inputClass: '',
+    },
+    view: {
+      inputClass: '',
+      viewButtonContent: '',
+      saveButtonContent: '',
+      cancelButtonContent: '',
+      confirmSave: false
     },
     edit: {
       inputClass: '',
@@ -168,6 +177,15 @@ export class Ng2SmartTableComponent implements OnChanges {
     } else {
       this.grid.edit(row);
     }
+    return false;
+  }
+
+  onView(row: Row, event): boolean {
+    event.stopPropagation();
+    this.view.emit({
+      data: row.getData(),
+      source: this.source
+    });
     return false;
   }
 
