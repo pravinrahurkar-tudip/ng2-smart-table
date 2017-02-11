@@ -5,7 +5,7 @@
   "author": "akveo",
   "homepage": "http://akveo.github.io/ng2-smart-table/",
   "license": "MIT",
-  "main": "./ng2-smart-table.js",
+  "main": "./ng2-smart-table.ts",
   "typings": "./ng2-smart-table.d.ts",
   "dependencies": {
     "ng2-completer": "^1.0.0"
